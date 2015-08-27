@@ -15,6 +15,10 @@ var ShoppingList = function(name){
   this.items = [];
 }
 
+ShoppingList.prototype.getItems = function(){
+  return {message: "Success!", list: this.items}
+}
+
 ShoppingList.prototype.addItem = function(item){
   var test = this.items.filter(function(listItem){
     return listItem.name === item.name;
@@ -28,19 +32,20 @@ ShoppingList.prototype.addItem = function(item){
   }
 }
 
-ShoppingList.prototype.removeItem = function(item){
-  var message = "Success! Item added to shopping list."
+ShoppingList.prototype.removeItem = function(id){
+  var message = "Success! Item removed from shopping list."
   for (var i = 0; i < this.items.length; i++) {
     if (this.items[i].id === id){
       this.items.splice(i, 1);
       return {message: message, list: this.items};
     }
   }
-  return {error: "Item not in list", list: this.items};
+  return {error: "Item not in list.", list: this.items};
 }
 
 module.exports = {
   ShoppingList: ShoppingList,
   Item: Item
+
 }
 
