@@ -2,7 +2,20 @@
 
 $(document).on('ready', function() {
   console.log('sanity check!');
+  getList();
 });
+
+function getList(){
+  $.ajax({
+    method: "GET",
+    url: "/api/v1/list"
+  }).done(function(data){
+    data.list.forEach(function(item){
+      $("#results").prepend("<p id='"+item.id+"''>"+item.name+" -- "+item.category+"</p>");
+    })
+  })
+}
+
 
 $("form").on("submit", function(e){
   e.preventDefault();
@@ -18,13 +31,17 @@ $("form").on("submit", function(e){
     }
   }).done(function(data){
     console.log(data);
-    $("#fail").hide();
-    $("#success").show().html(data.message);
-    $("#results").empty();
-    data.list.forEach(function(item){
-    $("#results").prepend("<p id='"+item.id+"''>"+item.name+" -- "+item.category+"</p>");
+      $("#fail").hide();
+      $("#success").show().html(data.message);
+      $("#results").empty();
+      $name.val("");
+      $category.val("")
+      data.list.forEach(function(item){
+        $("#results").prepend("<p id='"+item.id+"''>"+item.name+" -- "+item.category+"</p>");
     })
   }).fail(function(err){
-    // do stuff with error message
+      $("#fail").show().html(err.responseJSON.error);
+      $("#success").hide();
+      $("#results").empty();
   })
 })
