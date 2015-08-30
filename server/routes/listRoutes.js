@@ -19,9 +19,13 @@ router.post("/list", function(req, res){
   res.json(response)
 });
 
-router.put("/list", function(req, res){
-  ute.handlePut(req.params.id, req.body.category, function(data){
-    res.json(data);
+router.put("/list/:id", function(req, res){
+  var query = {"_id": req.params.id};
+  var update = {category: req.body.category}
+  var option = {new: true};
+  Item.findOneAndUpdate(query, update, option, function(err, item){
+    if (err) throw err;
+    return res.json(item);
   });
 });
 

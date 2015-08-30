@@ -9,7 +9,7 @@
 
     <h1>Shopping List</h1>
 
-  <form>
+  <form id="main-form">
     <div class="form-group">
       <label for="title">Item</label>
       <input type="text" class="form-control" id="name" placeholder="Item...">
@@ -36,15 +36,22 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Book CRUD</h4>
+          <h4 class="modal-title" id="myModalLabel">Item CRUD</h4>
         </div>
         <div class="modal-body">
-          <p id="modal-book"></p>
-        </div>
-        <div class="modal-footer">
-          <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button id="delete" type="button" class="btn btn-warning">Delete Item</button>
-          <button id="update" type="button" class="btn btn-primary">Save changes</button>
+          <p id="modal-item"></p>
+          <form id="modal-form">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Update Category</label>
+                <input type="text" class="form-control" id="input-update-category" placeholder="New category...">
+              </div>
+            <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+          </div>
+          <div class="modal-footer">
+            <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="delete" type="button" class="btn btn-warning">Delete Item</button>
+            <button id="update" type="submit" class="btn btn-primary">Save changes</button>
+          </form>
         </div>
       </div>
     </div>

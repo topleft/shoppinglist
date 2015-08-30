@@ -6,7 +6,7 @@ $(document).on('ready', function() {
 });
 
 
-$("form").on("submit", function(e){
+$("#main-form").on("submit", function(e){
   e.preventDefault();
   var $name = $("#name");
   var $category = $("#category");
@@ -32,22 +32,55 @@ $("form").on("submit", function(e){
 
 // rewrite results delete to handle delete or put
 
-$("#results").on("mouseenter", "a p", function(){
-});
-
 $("#results").on("click", "a p", function(){
+  $(".modal").modal("show");
   var id = $(this).attr("id");
-  console.log(id);
-  $.ajax({
+
+  $("#delete").on("click", function(){
+    $.ajax({
     method: "DELETE",
     url: ("/api/v1/list/"+id)
   }).done(function(err, data){
-    console.log(data);
-    getItems();
-  }).fail(function(err){
+      console.log(data);
+      getItems();
+    }).fail(function(err){
     return;
+    });
+  });
+
+  $("#modal-form").on("submit", function(e){
+    e.preventDefault();
+    console.log($('#input-update-category').val());
+
+    $.ajax({
+    method: "PUT",
+    url: ("/api/v1/list/"+id),
+    data: {
+      category: $("#input-update-category").val()
+    }
+  }).done(function(err, data){
+      console.log(data);
+      getItems();
+    }).fail(function(err){
+      console.log("fail")
+      return;
+    });
+
   });
 });
+
+// $("#results").on("click", "a p", function(){
+//   console.log(id);
+//   $.ajax({
+//     method: "DELETE",
+//     url: ("/api/v1/list/"+id)
+//   }).done(function(err, data){
+//     console.log(data);
+//     getItems();
+//   }).fail(function(err){
+//     return;
+//   });
+// });
 
 
 function getItems(){
