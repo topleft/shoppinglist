@@ -2,7 +2,9 @@
 
 $(document).on('ready', function() {
   console.log('sanity check!');
+  getItems();
 });
+
 
 $("form").on("submit", function(e){
   e.preventDefault();
@@ -17,7 +19,6 @@ $("form").on("submit", function(e){
       category: $category.val()
     }
   }).done(function(data){
-    console.log(data);
     $("#fail").hide();
     $("#success").show().html(data.message);
     $("#results").empty();
@@ -28,3 +29,21 @@ $("form").on("submit", function(e){
     // do stuff with error message
   })
 })
+
+function getItems(){
+  $.ajax({
+    method: "GET",
+    url: "/api/v1/list"
+  }).done(function(data){
+    data.forEach(function(item){
+      $("#results").prepend("<p>"+item.name+" -- "+item.category+"</p>");
+    })
+  }).fail(function(err, data){
+    console.log("Client Side Fail: "+data || err)
+  })
+}
+
+
+
+
+

@@ -8,15 +8,14 @@ router.get("/", function(req, res){
 });
 
 router.get('/list', function(req, res, next) {
-  var response = ute.handleGet();
-  console.log(response)
-  res.json(response);
-  // res.render('index', { title: 'Express' });
+  ute.handleGet(function(data){
+    res.json(data);
+  });
 });
 
 router.post("/list", function(req, res){
   var response = ute.handlePost(req.body.name, req.body.category);
-  console.log(response)
+  console.log("Post: "+response)
   res.json(response)
 });
 

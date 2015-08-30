@@ -1,12 +1,12 @@
 
 // global id num
-var itemId = 0;
+// var itemId = 0;
 
 // add quantity in the future
 var Item = function(name, category){
   this.name = name;
-  itemId++;
-  this.id = itemId;
+  // itemId++;
+  // this.id = itemId;
   this.category = category;
 }
 
@@ -32,6 +32,7 @@ ShoppingList.prototype.addItem = function(item){
   }
 }
 
+// will not work with out id
 ShoppingList.prototype.removeItem = function(id){
   var message = "Success! Item removed from shopping list."
   for (var i = 0; i < this.items.length; i++) {
