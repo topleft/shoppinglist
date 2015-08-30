@@ -22,9 +22,10 @@ $("form").on("submit", function(e){
     $("#fail").hide();
     $("#success").show().html(data.message);
     $("#results").empty();
-    data.list.forEach(function(item){
-    $("#results").prepend("<p id='"+item.id+"''>"+item.name+" -- "+item.category+"</p>");
-    })
+    getItems();
+    // data.list.forEach(function(item){
+    // $("#results").prepend("<p id='"+item.id+"''>"+item.name+" -- "+item.category+"</p>");
+    // })
   }).fail(function(err){
     // do stuff with error message
   })
