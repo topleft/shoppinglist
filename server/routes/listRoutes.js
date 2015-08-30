@@ -20,7 +20,7 @@ router.post("/list", function(req, res){
 });
 
 router.delete("/list/:id", function(req, res){
-  var   response = ute.handleDelete(req.params.id);
+  var response = ute.handleDelete(req.params.id);
   res.json(response)
 });
 
