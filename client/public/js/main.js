@@ -19,18 +19,36 @@ $("form").on("submit", function(e){
       category: $category.val()
     }
   }).done(function(data){
+    $name.val("");
+    $category.val("");
     $("#fail").hide();
-    $("#success").show().html(data.message);
+    $("#success").show().html("Success!");
     $("#results").empty();
     getItems();
-    data.list.forEach(function(item){
-    $("#results").prepend("<p id='"+item.id+"''>"+item.name+" -- "+item.category+"</p>");
-    // })
   }).fail(function(err){
     // do stuff with error message
   })
-})
 });
+
+// rewrite results delete to handle delete or put
+
+$("#results").on("mouseenter", "a p", function(){
+});
+
+$("#results").on("click", "a p", function(){
+  var id = $(this).attr("id");
+  console.log(id);
+  $.ajax({
+    method: "DELETE",
+    url: ("/api/v1/list/"+id)
+  }).done(function(err, data){
+    console.log(data);
+    getItems();
+  }).fail(function(err){
+    return;
+  });
+});
+
 
 function getItems(){
   $("#results").empty();
@@ -45,23 +63,6 @@ function getItems(){
     console.log("Client Side Fail: "+data || err)
   })
 }
-
-$("#results").on("click", "a p", function(){
-  var id = $(this).attr("id");
-  console.log(id);
-  $.ajax({
-    method: "DELETE",
-    url: ("/api/v1/list/"+id)
-  }).done(function(err, data){
-    // console.log(data);
-    getItems();
-  }).fail(function(err){
-    return;
-  });
-});
-
-// delete will not re append items to the page
-
 
 
 

@@ -3,7 +3,6 @@ var router = express.Router();
 var ute = require("../logic/utility.js");
 
 router.get("/", function(req, res){
-  console.log("stuff")
   res.render("index");
 });
 
@@ -15,15 +14,22 @@ router.get('/list', function(req, res, next) {
 
 router.post("/list", function(req, res){
   var response = ute.handlePost(req.body.name, req.body.category);
+  // response.message = "Success!"; -- this has no effect
   console.log("Post: "+response)
   res.json(response)
 });
 
-router.delete("/list/:id", function(req, res){
-  var response = ute.handleDelete(req.params.id);
-  res.json(response)
+router.put("/list", function(req, res){
+  ute.handlePut(req.params.id, req.body.category, function(data){
+    res.json(data);
+  });
 });
 
 
+router.delete("/list/:id", function(req, res){
+  var response = ute.handleDelete(req.params.id);
+  console.log(response)
+  res.json(response)
+});
 
 module.exports = router;
