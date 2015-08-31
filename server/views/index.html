@@ -10,6 +10,13 @@
       <h1 class="center">Shopping List</h1>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-success center" role="alert" id="success"></div>
+      <div class="alert alert-warning center" role="alert" id="fail"></div>
+      <div class="alert center" role="alert" id="place-holder"></div>
+    </div>
+  </div>
   <br>
   <br>
   <div class="container">
@@ -24,14 +31,13 @@
             <label for="author">Category</label>
             <input type="text" class="form-control" id="category" placeholder="Category...">
           </div>
-          <button type="submit" class="btn btn-default">Add Item</button>
+          <div class="row">
+            <button type="submit" class="btn btn-primary col-md-6 col-md-offset-3">Add Item</button>
+          </div>
         </form>
       </div>
 
-
       <div class="col-md-4 col-md-offset-1">
-        <div class="alert alert-success" role="alert" id="success"></div>
-        <div class="alert alert-warning" role="alert" id="fail"></div>
         <div>
         <br>
           <table class="table-striped col-md-12" >
@@ -56,29 +62,35 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Item CRUD</h4>
         </div>
+
         <div class="modal-body">
-          <table class="table-striped col-md-12" >
-              <tr>
-                <th>Item</th>
-                <th>Category</th>
-              </tr>
-            <tbody id="modal-item">
-            </tbody>
-          </table>
+          <div class="modal-input-row">
+            <table class="table-striped col-md-12" >
+                <tr>
+                  <th>Item</th>
+                  <th>Category</th>
+                </tr>
+              <tbody id="modal-item">
+              </tbody>
+            </table>
+          </div>
+
           <br>
           <br>
+          <br>
+
           <form id="modal-form">
               <div class="form-group">
                 <label for="exampleInputEmail1">Update Category</label>
                 <input type="text" class="form-control" id="input-update-category" placeholder="New category...">
               </div>
-            <!-- <button type="submit" class="btn btn-default">Submit</button> -->
-          </div>
-          <div class="modal-footer">
-            <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button id="delete" type="button" class="btn btn-warning" data-dismiss="modal">Delete Item</button>
-            <button id="update" type="submit" class="btn btn-primary">Save changes</button>
           </form>
+        </div>
+
+        <div class="modal-footer">
+          <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="delete" type="button" class="btn btn-warning" data-dismiss="modal">Delete Item</button>
+          <button id="update" type="submit" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>

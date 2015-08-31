@@ -22,6 +22,7 @@ $("#main-form").on("submit", function(e){
     $name.val("");
     $category.val("");
     $("#fail").hide();
+    $("#place-holder").hide();
     $("#success").show().html("Success!");
     $("#results").empty();
     getItems();
@@ -40,36 +41,41 @@ $("#results").on("click", "tr", function(e){
   var row = $this.closest("tr").clone()[0]
   $("#modal-item").empty().append(row);
 
+});
 
-  $("#delete").one("click", function(e){
-    e.stopPropagation();
-    $.ajax({
-    method: "DELETE",
-    url: ("/api/v1/list/"+id)
-  }).done(function(err, data){
-      $(".modal").modal("hide");
-      getItems();
-    }).fail(function(err){
-    return;
-    });
+$("#delete").on("click", function(e){
+  e.stopPropagation();
+  var id = $("#modal-item tr")[0];
+  id = $(id).attr("id");
+  $.ajax({
+  method: "DELETE",
+  url: ("/api/v1/list/"+id)
+}).done(function(err, data){
+    $(".modal").modal("hide");
+    getItems();
+  }).fail(function(err){
+  return;
   });
+});
 
 
-  $("#update").one("click", function(e){
-    e.stopPropagation();
-    $.ajax({
-    method: "PUT",
-    url: ("/api/v1/list/"+id),
-    data: {
-      category: $("#input-update-category").val()
-    }
-  }).done(function(err, data){
-      getItems();
-      $(".modal").modal("hide");
-    }).fail(function(err){
-      console.log("fail")
-      return;
-    });
+
+$("#update").one("click", function(e){
+  e.stopPropagation();
+  var id = $("#modal-item tr")[0];
+  id = $(id).attr("id");
+  $.ajax({
+  method: "PUT",
+  url: ("/api/v1/list/"+id),
+  data: {
+    category: $("#input-update-category").val()
+  }
+}).done(function(err, data){
+    getItems();
+    $(".modal").modal("hide");
+  }).fail(function(err){
+    console.log("fail")
+    return;
   });
 });
 
