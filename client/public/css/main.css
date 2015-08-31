@@ -7,6 +7,28 @@ a {
   color: #00B7FF;
 }
 
+.center {
+  text-align: center;
+}
+
 #success, #fail {
   display: none;
 }
+
+td, th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {
+  font-size: 2rem;
+  padding: 0.5rem;
+}
+
+td {
+  font-size: 1.75rem;
+  padding: 0.5rem;
+
+}
+
+

@@ -31,22 +31,23 @@ $("#main-form").on("submit", function(e){
 });
 
 // manipulate single items within modal
-$("#results").on("click", "a p", function(e){
+$("#results").on("click", "tr", function(e){
   e.stopPropagation();
 
   var $this = $(this)
   $(".modal").modal("show");
   var id = $this.attr("id");
-  $("#modal-item").html($this.html());
+  var row = $this.closest("tr").clone()[0]
+  $("#modal-item").empty().append(row);
 
 
   $("#delete").one("click", function(e){
-    console.log(e)
+    e.stopPropagation();
     $.ajax({
     method: "DELETE",
     url: ("/api/v1/list/"+id)
   }).done(function(err, data){
-      console.log(data);
+      $(".modal").modal("hide");
       getItems();
     }).fail(function(err){
     return;
@@ -54,10 +55,8 @@ $("#results").on("click", "a p", function(e){
   });
 
 
-  $("#modal-form").on("submit", function(e){
-    e.preventDefault();
-    console.log($('#input-update-category').val());
-
+  $("#update").one("click", function(e){
+    e.stopPropagation();
     $.ajax({
     method: "PUT",
     url: ("/api/v1/list/"+id),
@@ -65,7 +64,6 @@ $("#results").on("click", "a p", function(e){
       category: $("#input-update-category").val()
     }
   }).done(function(err, data){
-      console.log(data);
       getItems();
       $(".modal").modal("hide");
     }).fail(function(err){
@@ -76,22 +74,12 @@ $("#results").on("click", "a p", function(e){
 });
 
 
-// $("#results").on("click", "a p", function(){
-//   console.log(id);
-//   $.ajax({
-//     method: "DELETE",
-//     url: ("/api/v1/list/"+id)
-//   }).done(function(err, data){
-//     console.log(data);
-//     getItems();
-//   }).fail(function(err){
-//     return;
-//   });
-// });
+
 
 
 function getItems(){
-  $("#results").html('');
+  console.log("once")
+  $("#results").empty();
   $.ajax({
     method: "GET",
     url: "/api/v1/list"
@@ -99,7 +87,7 @@ function getItems(){
     console.log(data);
     for (var i = 0; i < data.length; i++) {
       console.log(i)
-      $("#results").prepend("<a><p id='"+data[i]._id+"''>Item: "+data[i].name+" -in- Category: "+data[i].category+"</p></a>");
+      $("#results").append("<tr id='"+data[i]._id+"'><td><a>"+data[i].name+"</a></td><td><a>"+data[i].category+"</a></td></tr>");
     };
 
     // data.forEach(function(item){

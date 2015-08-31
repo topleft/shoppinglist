@@ -5,29 +5,47 @@
 
 {% block content %}
 
-  <div class="container">
-
-    <h1>Shopping List</h1>
-
-  <form id="main-form">
-    <div class="form-group">
-      <label for="title">Item</label>
-      <input type="text" class="form-control" id="name" placeholder="Item...">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="center">Shopping List</h1>
     </div>
-    <div class="form-group">
-      <label for="author">Category</label>
-      <input type="text" class="form-control" id="category" placeholder="Category...">
-    </div>
-    <button type="submit" class="btn btn-default">Add Item</button>
-  </form>
-
   </div>
   <br>
   <br>
   <div class="container">
-    <div class="alert alert-success" role="alert" id="success"></div>
-    <div class="alert alert-warning" role="alert" id="fail"></div>
-    <div id="results"></div>
+    <div class="row">
+      <div class="col-md-6">
+        <form id="main-form">
+          <div class="form-group">
+            <label for="title">Item</label>
+            <input type="text" class="form-control" id="name" placeholder="Item...">
+          </div>
+          <div class="form-group">
+            <label for="author">Category</label>
+            <input type="text" class="form-control" id="category" placeholder="Category...">
+          </div>
+          <button type="submit" class="btn btn-default">Add Item</button>
+        </form>
+      </div>
+
+
+      <div class="col-md-4 col-md-offset-1">
+        <div class="alert alert-success" role="alert" id="success"></div>
+        <div class="alert alert-warning" role="alert" id="fail"></div>
+        <div>
+        <br>
+          <table class="table-striped col-md-12" >
+              <tr>
+                <th>Item</th>
+                <th>Category</th>
+              </tr>
+            <tbody id="results">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
 
@@ -39,7 +57,14 @@
           <h4 class="modal-title" id="myModalLabel">Item CRUD</h4>
         </div>
         <div class="modal-body">
-          <h3 id="modal-item"></h3>
+          <table class="table-striped col-md-12" >
+              <tr>
+                <th>Item</th>
+                <th>Category</th>
+              </tr>
+            <tbody id="modal-item">
+            </tbody>
+          </table>
           <br>
           <br>
           <form id="modal-form">
