@@ -30,13 +30,15 @@ $("#main-form").on("submit", function(e){
   })
 });
 
-// rewrite results delete to handle delete or put
-// try to pull delete button outside of modal
-
+// manipulate single items within modal
 $("#results").on("click", "a p", function(e){
   e.stopPropagation();
+
+  var $this = $(this)
   $(".modal").modal("show");
-  var id = $(this).attr("id");
+  var id = $this.attr("id");
+  $("#modal-item").html($this.html());
+
 
   $("#delete").one("click", function(e){
     console.log(e)
@@ -65,6 +67,7 @@ $("#results").on("click", "a p", function(e){
   }).done(function(err, data){
       console.log(data);
       getItems();
+      $(".modal").modal("hide");
     }).fail(function(err){
       console.log("fail")
       return;
@@ -96,7 +99,7 @@ function getItems(){
     console.log(data);
     for (var i = 0; i < data.length; i++) {
       console.log(i)
-      $("#results").prepend("<a><p id='"+data[i]._id+"''>"+data[i].name+" -- "+data[i].category+"</p></a>");
+      $("#results").prepend("<a><p id='"+data[i]._id+"''>Item: "+data[i].name+" -in- Category: "+data[i].category+"</p></a>");
     };
 
     // data.forEach(function(item){
