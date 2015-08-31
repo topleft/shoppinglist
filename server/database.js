@@ -5,7 +5,6 @@ var itemSchema = new Schema(
   {
     name : String,
     category: String,
-    // id: Number
   }
 );
 

@@ -11,10 +11,13 @@ function handlePost(itemName, itemCategory){
 };
 
 function handlePut(id, newCategory, cb){
-  var query = {_id: id};
-  var update = {category: newCategory}
+  // console.log(id);
+  // var query = {_id: };
+  // var update = {category: newCategory};
+  // console.log(update);
   var option = {new: true};
-  Item.findOneAndUpdate(query, update, option, function(err, item){
+  Item.findOneAndUpdate(id, newCategory, option, function(err, item){
+    // console.log("test")
     if (err) throw err;
     return cb(item);
   });
@@ -23,7 +26,7 @@ function handlePut(id, newCategory, cb){
 // accepts a Number
 function handleDelete(currentId){
   Item.remove({_id: currentId}, function(err){
-    if(err) return handleError(err);
+    if(err) throw err;
   });
   return {message: "Item removed."};
 };
@@ -38,5 +41,6 @@ function handleGet(cb){
 module.exports = {
   handleGet: handleGet,
   handleDelete: handleDelete,
-  handlePost: handlePost
+  handlePost: handlePost,
+  handlePut: handlePut
 }

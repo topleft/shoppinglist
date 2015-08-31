@@ -44,6 +44,6 @@ mongoose.connect('mongodb://localhost/item-database');
   * adding the message to the object (`object.message = "message"`) inside the route as well as in the utitily function.
   * console logs both server side and client side, server side yeilds information, client is undefined
 
-
+## Question about "put" request, keep getting a 500 call, how to test to get  to the next level, have no idea what to try next
 
 
