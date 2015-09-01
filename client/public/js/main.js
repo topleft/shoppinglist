@@ -22,8 +22,8 @@ $("#main-form").on("submit", function(e){
     $name.val("");
     $category.val("");
     $("#fail").hide();
-    $("#place-holder").hide();
-    $("#success").show().html("Success!");
+    $("#success").show().html("Success! Item added.");
+    fadeAlert($("#success"));
     $("#results").empty();
     getItems();
   }).fail(function(err){
@@ -71,6 +71,7 @@ $("#update").one("click", function(e){
     category: $("#input-update-category").val()
   }
 }).done(function(err, data){
+    $("#success").show().html("Success! Item Updated");
     getItems();
     $(".modal").modal("hide");
   }).fail(function(err){
@@ -95,13 +96,19 @@ function getItems(){
       console.log(i)
       $("#results").append("<tr id='"+data[i]._id+"'><td><a>"+data[i].name+"</a></td><td><a>"+data[i].category+"</a></td></tr>");
     };
-
-    // data.forEach(function(item){
-    //   $("#results").prepend("<a><p id='"+item._id+"''>"+item.name+" -- "+item.category+"</p></a>");
-    // })
   }).fail(function(err, data){
-    console.log("Client Side Fail: "+err)
+    console.log(err)
   })
+}
+
+// fade works but it is glitchy
+// refactor with css visibilty hidden and visible
+function fadeAlert(shown){
+  setTimeout(function(){
+    shown.fadeOut();
+    console.log("hidden");
+  }
+  ,3000);
 }
 
 

@@ -10,14 +10,8 @@ function handlePost(itemName, itemCategory){
   return newItem;
 };
 
-function handlePut(id, newCategory, cb){
-  // console.log(id);
-  // var query = {_id: };
-  // var update = {category: newCategory};
-  // console.log(update);
-  var option = {new: true};
+function handlePut(id, newCategory, option, cb){
   Item.findOneAndUpdate(id, newCategory, option, function(err, item){
-    // console.log("test")
     if (err) throw err;
     return cb(item);
   });
@@ -31,11 +25,22 @@ function handleDelete(currentId){
   return {message: "Item removed."};
 };
 
+
+// function handleGet(){
+//   var items = Item.find({})
+//   return items;
+// };
+
+// function handleGet(res){
+//   var items = Item.find({})
+//   res.json(items);
+// };
+
 function handleGet(cb){
   Item.find({}, function(err, items) {
-  if (err) throw err;
-  return cb(items);
-});
+    if (err) throw err;
+    return cb(items);
+  });
 };
 
 module.exports = {

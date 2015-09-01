@@ -1,3 +1,14 @@
+
+/*header {
+  background-image: url(http://www.leanitup.com/wp-content/uploads/2013/03/veggies1.jpg);
+  background-repeat: no-repeat;
+  height: 300px;
+}*/
+
+/*#headline {
+  color: white;
+}*/
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -14,7 +25,6 @@ a {
 #success, #fail {
   display: none;
 }
-
 
 td, th {
   text-align: center;
